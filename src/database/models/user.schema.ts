@@ -1,8 +1,18 @@
-import mongoose from "mongoose";
+import mongoose, { Document} from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+enum Role {
+    Student = "student",
+    Admin = "admin"
+}
+interface IUser extends mongoose.Document{
+    username : string,
+    email : string,
+    profilePic : string,
+    role : Role
+}
+const userSchema = new Schema<IUser>({
     username : {
         type: String,
         required: true
@@ -11,22 +21,18 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    password : {
+    profilePic : {
         type: String,
         required: true
     },
+    
     role : {
         type: String,
-        required: true
+        enum: [Role.Admin, Role.Student],
+        default: Role.Student
     },
-    createdAt : {
-        type: Date,
-        default: Date.now
-    },
-    updatedAt : {
-        type: Date,
-        default: Date.now
-    }
+    
+    
 })
 
 const User =mongoose.models.User || mongoose.model("User", userSchema);
