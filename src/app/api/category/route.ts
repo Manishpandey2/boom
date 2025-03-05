@@ -1,4 +1,4 @@
-import { createCategory } from "./category.controller";
+import { createCategory, getCategories } from "./category.controller";
 
 
 
@@ -7,5 +7,5 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-    
+    return getCategories()
 }
