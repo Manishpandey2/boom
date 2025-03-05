@@ -1,9 +1,17 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const Schema = mongoose.Schema;
+interface ICourse extends Document{
+    title: string,
+    description: string,
+    price: number,
+    duration: string,
+    category: mongoose.Types.ObjectId,
+    lesson: mongoose.Types.ObjectId,
+    createdAt: Date
+}
 
-const courseSchema = new Schema({
-    coursename : {
+const courseSchema = new Schema<ICourse>({
+    title : {
         type: String,
         required: true
     },
@@ -11,13 +19,29 @@ const courseSchema = new Schema({
         type: String,
         required: true
     },
+    price : {
+        type: Number,
+        required: true
+    },
+
+    duration : {
+        type: String,
+        required: true
+    },
+
+    category : {
+        type: Schema.Types.ObjectId,
+        ref: "Category",
+        required: true
+    },
+    lesson : {
+        type: Schema.Types.ObjectId,
+        ref: "Lesson",
+        required: true
+    },
     createdAt : {
         type: Date,
-        default: Date.now
-    },
-    updatedAt : {
-        type: Date,
-        default: Date.now
+        default: Date.now()
     }
 })
 
