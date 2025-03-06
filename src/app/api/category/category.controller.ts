@@ -1,10 +1,12 @@
 import Connect from "@/database/connection";
 import Category from "@/database/models/category.schema";
+import authMiddleware from "../../../../middleware/auth.middleware";
 
 
 
 export async function createCategory(req: Request){
     try{
+        const response = await authMiddleware(req as Request);
         await Connect();
         const {name, description} = await req.json();
         const existingCategory = await Category.findOne({name: name});
