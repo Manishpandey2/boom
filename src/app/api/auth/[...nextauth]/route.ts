@@ -1,8 +1,8 @@
 import Connect from "@/database/connection";
 import User from "@/database/models/user.schema";
+import { AuthOptions } from "next-auth";
 import { Session } from "next-auth";
 import NextAuth from "next-auth/next";
-import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 export const outhOptions:AuthOptions = {
@@ -20,9 +20,9 @@ export const outhOptions:AuthOptions = {
                 const existingUser = await User.findOne({email : user.email})
                 if(!existingUser){
                     await User.create({
-                        username: user.profile?.name,
-                        email: user.profile?.email,
-                        profilePic: user.profile?.image,
+                        username: user.name,
+                        email: user.email,
+                        profilePic: user.image,
                     })
                 }
                 return true;
