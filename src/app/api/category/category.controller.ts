@@ -47,6 +47,6 @@ export async function getCategories(){
         console.log(error);
         return Response.json({
             message: "Error fetching categories"
-        }, {status: 200});
+        }, {status: 500});
     }
 }
