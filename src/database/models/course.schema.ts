@@ -6,7 +6,7 @@ interface ICourse extends Document{
     price: number,
     duration: string,
     category: mongoose.Types.ObjectId,
-    lesson: mongoose.Types.ObjectId,
+    lessons: mongoose.Types.ObjectId[],
     createdAt: Date
 }
 
@@ -34,14 +34,14 @@ const courseSchema = new Schema<ICourse>({
         ref: "Category",
         required: true
     },
-    lesson : {
+    lessons : [{
         type: Schema.Types.ObjectId,
         ref: "Lesson",
-        required: true
-    },
+        
+    }],
     createdAt : {
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 })
 

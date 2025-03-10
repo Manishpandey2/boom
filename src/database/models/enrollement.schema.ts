@@ -19,7 +19,7 @@ const enrollementSchema = new Schema<IEnrollement>({
     },
     enrolledAt: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 });
 

@@ -11,8 +11,7 @@ interface ILesson extends Document {
 const lessonSchema = new Schema<ILesson>({
     course: {
         type: Schema.Types.ObjectId,
-        ref: "Course",
-        required: true
+        ref: "Course"
     },
     title: {
         type: String,
