@@ -32,7 +32,7 @@ export const outhOptions:AuthOptions = {
                 return false;
             }
         },
-        async session({session,user}:{session: Session & { user: any },user: any}){ {
+        async session({session,user}:{session: Session, user: any}){ {
            const userData = await User.findById(user.id);
            session.user.role = userData.role || "student";
            return session;
